@@ -1,4 +1,10 @@
 /*
+
+06/28/2019
+Bug Fixed:
+*Fixed the problem that the shortest path algorithm only works when starting at node 0
+
+
 06/12/2019
 Summary:
 This C++ programm implements the Dijkstra's algorithm, and applies it on a set of randomly generated maps.
@@ -435,7 +441,7 @@ class shortestPath{
 		int closedSetSize = 0; 	//The close set is the visited nodes that we've found the shorted distance
 								//It is the number of non-"-1" element in the dist and prev vector
 		dist[u]=0;
-		prev[u]=0;	
+		prev[u]=u;	
 		closedSetSize++;
 		
 		//Add the neibours of the starting node to the openset
@@ -486,7 +492,7 @@ class shortestPath{
 			//If true, wrap the result to a helper class
 			int cursor = w;
 			route.push_back(w);
-			while (cursor != 0){
+			while (cursor != u){
 				route.push_back(prev[cursor]);
 				cursor=prev[cursor];
 			}
